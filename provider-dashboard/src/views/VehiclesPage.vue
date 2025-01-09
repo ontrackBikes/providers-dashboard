@@ -213,7 +213,7 @@ export default {
         const response = await axios.get(
           `http://localhost:3000/api/daily-rentals/provider/models`,
           {
-            params: { statusDetails: this.selectedStatuses },
+          
             headers: {
               Authorization: providerToken,
             },
@@ -243,6 +243,7 @@ export default {
         const response = await axios.get(
           `http://localhost:3000/api/daily-rentals/provider/fleet`,
           {
+            params: { statusDetails: this.selectedStatuses },
             headers: {
               Authorization: providerToken,
             },
@@ -298,7 +299,7 @@ export default {
       this.filterVehicles();
     },
     clearStatusFilter() {
-      this.selectedes = [];
+      this.selectedStatuses = [];
       this.filterVehicles();
     },
   },
