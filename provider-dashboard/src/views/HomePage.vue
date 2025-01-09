@@ -17,10 +17,14 @@
           >
             <div class="d-flex justify-content-between align-items-center">
               <div>
-                <h2 class="mb-0">{{ item.value }}</h2>
-                <div class="small">{{ item.label }}</div>
+                <h2 class="mb-0 text-dark">{{ item.value }}</h2>
+                <div class="small text-dark">{{ item.label }}</div>
               </div>
-              <b-icon :icon="item.icon" font-scale="1.5"></b-icon>
+              <b-icon
+                variant="dark"
+                :icon="item.icon"
+                font-scale="1.5"
+              ></b-icon>
             </div>
           </b-card>
         </b-col>
@@ -69,10 +73,12 @@
               <h5 class="mb-0">Reservation Statistic</h5>
               <div class="text-muted">
                 <span class="mr-3">
-                  <span class="badge bg-primary me-2">549</span> Check In
+                  <span class="badge bg-primary text-light me-2">549</span>
+                  Pickup
                 </span>
                 <span>
-                  <span class="badge bg-danger me-2">327</span> Check Out
+                  <span class="badge bg-danger text-light me-2">327</span>
+                  Dropoff
                 </span>
               </div>
             </div>
@@ -100,49 +106,49 @@ export default {
           value: 872,
           label: "Total",
           icon: "house-door", // Home icon for total
-          bgVariant: "primary",
+          // bgVariant: "primary",
         },
         {
           value: 285,
           label: "Available",
           icon: "calendar-check", // Calendar check icon for available
-          bgVariant: "success",
+          // bgVariant: "success",
         },
         {
           value: 53,
           label: "Booked",
           icon: "check-circle", // Check circle icon for booked
-          bgVariant: "warning",
+          // bgVariant: "warning",
         },
         {
           value: 78,
           label: "Under Service",
           icon: "tools", // Tools icon for under service
-          bgVariant: "danger",
+          // bgVariant: "danger",
         },
         {
           value: 78,
           label: "Not Working",
           icon: "exclamation-circle", // Exclamation circle icon for not working
-          bgVariant: "secondary",
+          // bgVariant: "secondary",
         },
         {
           value: 78,
           label: "Ongoing Under Service",
           icon: "wrench", // Wrench icon for ongoing under service
-          bgVariant: "warning",
+          // bgVariant: "warning",
         },
         {
           value: 78,
           label: "Water Wash",
           icon: "water", // Water icon for water wash
-          bgVariant: "primary",
+          // bgVariant: "primary",
         },
         {
           value: 78,
           label: "Returned",
           icon: "reply", // Reply icon for returned
-          bgVariant: "dark",
+          // bgVariant: "dark",
         },
       ],
       newBooking: 872,
@@ -157,15 +163,17 @@ export default {
       ],
       checkInBadge: 549,
       checkOutBadge: 327,
-      cityId: 1,
+      cityId: "675189eaa0d11b87448f16d3",
       locality: "Indiranager",
     };
   },
   methods: {
     async getAddresses(cityId, locality) {
       try {
+        const city = "675189eaa0d11b87448f16d3";
+        const providerToken = localStorage.getItem("provider_token");
         const response = await axios.get(
-          `http://localhost:3000/api/daily-rentals/${cityId}/provider/addresses`,
+          `http://localhost:3000/api/daily-rentals/${city}/provider/addresses`,
           {
             params: {
               city: cityId,
@@ -173,7 +181,7 @@ export default {
             },
 
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("provider_token")}`, // Authorization header
+              Authorization: providerToken, // Authorization header
             },
           }
         );
@@ -218,22 +226,22 @@ export default {
       type: "line",
       data: {
         labels: [
-          "Q1",
-          "Q2",
-          "Q3",
-          "Q4",
-          "Q5",
-          "Q6",
-          "Q7",
-          "Q8",
-          "Q9",
-          "Q10",
-          "Q11",
-          "Q12",
+          "M1",
+          "M2",
+          "M3",
+          "M4",
+          "M5",
+          "M6",
+          "M7",
+          "M8",
+          "M9",
+          "M10",
+          "M11",
+          "M12",
         ],
         datasets: [
           {
-            label: "Check In",
+            label: "Pickup",
             data: [300, 400, 350, 500, 450, 400, 450, 400, 500, 450, 400, 450],
             borderColor: "#0d6efd",
             backgroundColor: "rgba(13, 110, 253, 0.1)",
@@ -241,7 +249,7 @@ export default {
             tension: 0.4,
           },
           {
-            label: "Check Out",
+            label: "Dropoff",
             data: [200, 300, 250, 350, 300, 350, 300, 350, 300, 350, 300, 320],
             borderColor: "#dc3545",
             backgroundColor: "rgba(220, 53, 69, 0.1)",

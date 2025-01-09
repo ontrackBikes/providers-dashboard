@@ -54,10 +54,11 @@
         </b-card>
       </b-col>
     </b-row>
+
     <!-- b-toast for displaying error messages -->
-    <!-- <b-toast v-model="showToast" variant="danger" title="Error">
+    <b-toast v-model="showToast" variant="danger" title="Error" solid>
       {{ errorMessage }}
-    </b-toast> -->
+    </b-toast>
   </b-container>
 </template>
 
@@ -70,6 +71,7 @@ export default {
       mobile: "",
       password: "",
       errorMessage: "",
+      showToast: false, // Add this variable to control the toast visibility
     };
   },
   methods: {
@@ -90,10 +92,12 @@ export default {
           this.$router.push("/");
         } else {
           this.errorMessage = data.message || "Invalid credentials";
+          this.showToast = true; // Show the toast on error
         }
       } catch (error) {
         this.errorMessage =
-          error.response?.data?.message || "Invalid credentials";
+          error.response?.data?.message || "An unexpected error occurred";
+        this.showToast = true; // Show the toast on error
       }
     },
   },

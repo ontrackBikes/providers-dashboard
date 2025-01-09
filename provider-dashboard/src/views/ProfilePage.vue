@@ -10,9 +10,8 @@
       <b-row class="mt-4">
         <b-col>
           <b-card v-if="profile" class="mb-4">
-            <h4>Profile Details</h4>
+            <h4>{{ profile.name || "NA" }}</h4>
             <p><strong>ID:</strong> {{ profile._id || "NA" }}</p>
-            <p><strong>Name:</strong> {{ profile.name || "NA" }}</p>
             <p><strong>Email:</strong> {{ profile.email || "NA" }}</p>
             <p><strong>Phone:</strong> {{ profile.mobile || "NA" }}</p>
             <p><strong>Address:</strong> {{ profile.address || "NA" }}</p>
